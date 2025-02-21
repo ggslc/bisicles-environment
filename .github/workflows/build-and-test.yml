@@ -41,8 +41,8 @@ jobs:
         run: |
           ln -s $PWD/Make.defs.local.ubuntu Chombo/lib/mk/Make.defs.local
           ln -s Make.defs.ubuntu_22.4 bisicles-uob/code/mk/Make.defs.`uname -n`
-          ls -l Chombo/lib/mk/
-          ls -l bisicles-uob/code/mk/
+          ls -l Chombo/lib/mk/MAke.defs.local
+          ls -l bisicles-uob/code/mk/Make.defs.`uname -n`
 
       #Install hdf5 etc
       - name: install dependencies
@@ -62,6 +62,7 @@ jobs:
       #build the serial. opt version
       - name: build serial opt bisicles
         run: |
+           ls -l
            cd $GITHUB_WORKSPACE/bisicles-uob/code/exec2D/
            make -j4 all OPT=TRUE
            cd $GITHUB_WORKSPACE/bisicles-uob/code/filetools/
