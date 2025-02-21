@@ -37,7 +37,7 @@ jobs:
         run: ls
 
       # Attempt to link the Make.defs files
-      - name: Specify Make.defs
+      - name: specify Make.defs
         run: |
           ln -s $PWD/Make.defs.local.ubuntu Chombo/lib/mk/Make.defs.local
           ln -s Make.defs.ubuntu_22.4 bisicles-uob/code/mk/Make.defs.`uname -n`
@@ -49,19 +49,25 @@ jobs:
         run: | 
           sudo apt install gfortran csh mpi-default-bin mpi-default-dev 
           sudo apt install libhdf5-mpi-dev libhdf5-dev hdf5-tools 
-          sudo apt install libnetcdff-dev libnetcdf-dev 
+          sudo apt install libnetcdff-dev libnetcdf-dev netcdf-bin nco
           sudo apt install python3 python3-dev libpython3-dev
           sudo apt install libfftw3-dev
 
       #build the serial. opt version
       - name: build serial opt bisicles
         run: |
-           cd $GITHUB_WORKSPACE/bisicles-uob/code
+           cd $GITHUB_WORKSPACE/bisicles-uob/code/exec2D/
+           make -j4 all OPT=TRUE
+           cd $GITHUB_WORKSPACE/bisicles-uob/code/filetools/
            make -j4 all OPT=TRUE
            
       #test serial opt version   
       - name: plot-cf test  serial opt bisicles
         run: |
-           cd $GITHUB_WORKSPACE/bisicles-uob/code/regression
-           ../../code/exec2D/driver2d.Linux.64.g++.gfortran.DEBUG.OPT.ex inputs.regression
+           cd $GITHUB_WORKSPACE/bisicles-uob/code/regression/plot-cf
+           ../../exec2D/driver2d.Linux.64.g++.gfortran.DEBUG.OPT.ex inputs.regression > sout
+           grep HDF5NormTest sout
+
+           
+           
           
