@@ -41,7 +41,7 @@ jobs:
         run: |
           ln -s $PWD/Make.defs.local.ubuntu Chombo/lib/mk/Make.defs.local
           ln -s Make.defs.ubuntu_22.4 bisicles-uob/code/mk/Make.defs.`uname -n`
-          ls -l Chombo/lib/mk/MAke.defs.local
+          ls -l Chombo/lib/mk/Make.defs.local
           ls -l bisicles-uob/code/mk/Make.defs.`uname -n`
 
       #Install hdf5 etc
