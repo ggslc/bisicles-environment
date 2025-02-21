@@ -55,19 +55,35 @@ jobs:
           sudo apt install libfftw3-dev
 
       #build the serial. opt version
-      - name: build serial opt bisicles
+      - name: build serial opt 
         run: |
            ls -l
            cd $GITHUB_WORKSPACE/bisicles-uob/code/exec2D/
            make -j4 all OPT=TRUE
            cd $GITHUB_WORKSPACE/bisicles-uob/code/filetools/
            make -j4 all OPT=TRUE
-
-      - name: plot-cf test  serial opt bisicles
+      
+      #plot-cf test for the serial. opt version
+      - name: plot-cf test serial opt 
         run: |
            cd $GITHUB_WORKSPACE/bisicles-uob/code/regression/plot-cf
            ../../exec2D/driver2d.Linux.64.g++.gfortran.DEBUG.OPT.ex inputs.regression > sout
            grep HDF5NormTest sout
+
+
+      #build the mpi opt version
+      - name: build mpi opt 
+        run: |
+           ls -l
+           cd $GITHUB_WORKSPACE/bisicles-uob/code/exec2D/
+           make -j4 all OPT=TRUE MPI=TRUE
+      
+      #plot-cf test for the serial. opt version
+      - name: plot-cf test mpi opt 
+        run: |
+           cd $GITHUB_WORKSPACE/bisicles-uob/code/regression/plot-cf
+           mpirun -np 4 ../../exec2D/driver2d.Linux.64.mpiCC.gfortran.DEBUG.OPT.MPI.ex inputs.regression 
+           grep HDF5NormTest pout.0 
 
            
            
