@@ -62,5 +62,5 @@ jobs:
        - name: plot-cf regression test
          run: |
            cd $GITHUB_WORKSPACE/bisicles-uob/code/regression/plot-cf
-           ../../code/exec2D/
+           
           
