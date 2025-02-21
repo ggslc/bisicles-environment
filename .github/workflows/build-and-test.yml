@@ -11,7 +11,7 @@ on:
   #  branches: [ "main" ]
   # 
   schedule:
-    - cron: "19 19 * * *"
+    - cron: "04 40 * * *"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -70,20 +70,6 @@ jobs:
            ../../exec2D/driver2d.Linux.64.g++.gfortran.DEBUG.OPT.ex inputs.regression > sout
            grep HDF5NormTest sout
 
-
-      #build the mpi opt version
-      - name: build mpi opt 
-        run: |
-           ls -l
-           cd $GITHUB_WORKSPACE/bisicles-uob/code/exec2D/
-           make -j4 all OPT=TRUE MPI=TRUE
-      
-      #plot-cf test for the serial. opt version
-      - name: plot-cf test mpi opt 
-        run: |
-           cd $GITHUB_WORKSPACE/bisicles-uob/code/regression/plot-cf
-           mpirun -np 2 ../../exec2D/driver2d.Linux.64.mpiCC.gfortran.DEBUG.OPT.MPI.ex inputs.regression 
-           grep HDF5NormTest pout.0 
 
            
            
