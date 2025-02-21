@@ -1,0 +1,7 @@
+[submodule "Chombo"]
+	path = Chombo
+	url = https://github.com/applied-numerical-algorithms-group-lbnl/Chombo_3.2.git
+[submodule "bisicles-uob"]
+	path = bisicles-uob
+	url = https://github.com/ggslc/bisicles-uob.git
+	branch = master
