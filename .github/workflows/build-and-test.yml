@@ -82,7 +82,7 @@ jobs:
       - name: plot-cf test mpi opt 
         run: |
            cd $GITHUB_WORKSPACE/bisicles-uob/code/regression/plot-cf
-           mpirun -np 4 ../../exec2D/driver2d.Linux.64.mpiCC.gfortran.DEBUG.OPT.MPI.ex inputs.regression 
+           mpirun -np 2 ../../exec2D/driver2d.Linux.64.mpiCC.gfortran.DEBUG.OPT.MPI.ex inputs.regression 
            grep HDF5NormTest pout.0 
 
            
