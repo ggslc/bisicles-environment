@@ -19,7 +19,7 @@ jobs:
   # build BISICLES and Chombo
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -40,9 +40,13 @@ jobs:
       - name: Specify Make.defs
         run: |
           ln -s Make.defs.local.ubuntu Chombo/lib/mk/Make.defs.local
-          ln -s Make.defs.ubuntu_24.4 bisicles-uob/code/mk/Make.defs.`uname -n`
+          ln -s Make.defs.ubuntu_22.4 bisicles-uob/code/mk/Make.defs.`uname -n`
 
       - name: install dependencies
-        run: sudo apt install gfortran csh mpi-default-bin mpi-default-dev libhdf5-mpi-dev libhdf5-dev hdf5-tools libnetcdff-dev libnetcdf-dev python3 python3-dev libpython3-dev fftw3-dev
+        run: | 
+          sudo apt install gfortran csh mpi-default-bin mpi-default-dev 
+          sudo apt install libhdf5-mpi-dev libhdf5-dev hdf5-tools 
+          sudo apt install libnetcdff-dev libnetcdf-dev 
+          sudo apt install python3 python3-dev libpython3-dev
           
           
